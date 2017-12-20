@@ -1,0 +1,2 @@
+The repository is made to showcase and track my work and progress in the field of developing various Web related applications, learnt through various classes - both online and classroom.  
+As and when I learn a new skill, I will try to implement it by doing a small project and putting it up on this repository. The projects are primarily done in order to learn various libraries and languages used in the web development frameworks.
