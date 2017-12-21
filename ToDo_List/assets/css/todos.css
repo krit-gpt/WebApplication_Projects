@@ -1,10 +1,85 @@
 #container{
 border: 2px solid gray;
+background: #f7f7f7;
 width: 360px;
-margin: 0 auto;
+margin: 100px auto;
+box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+h1{
+	background: #2980b9;
+	color: white;
+	margin: 0;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-weight: normal;  /* by default h1 is bold, normal makes it normal */
+}
+
+ul{
+	list-style: none;  /* no dots before each <li> in <ul>*/
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-family: Roboto;
+	background: #20002c;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #cbb4d4, #20002c);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #cbb4d4, #20002c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.fa-plus{    /* the plus sign goes to the right*/
+float: right;
+}
+
+/* Trash can hover*/
+span{   /* span is the trash box */
+	background: #e74c3c;
+	height: 40px;
+	margin-right: 20px;
+	text-align: center;  /* This will make the trash can appear in the center*/
+	color: white;
+	width: 0;     /* initial width is kept to be zero!, when hovered, the width increases! */
+	display: inline-block;  
+	opacity: 0;
+	transition: 0.2s linear;  /* Transition will add the slide in effect!!*/
+}
+
+/* When we hover over an li, select the span!, because only the span will animate, not the entire <li>*/
+li:hover span{
+	width: 40px;
+	opacity: 1.0;
+}
+
+li{
+background: #fff;
+height: 40px;
+line-height: 40px;  /* will center the text in the li*/
+color: #666;
+}
+
+li:nth-child(2n){
+	background: #f7f7f7;
+}
+
+input{
+font-size: 18px;
+background-color: #f7f7f7;
+width: 100%;
+padding: 13px 13px 13px 20px;
+box-sizing: border-box;  /* to make sure that the box remains in the container even after adding the padding and the margin*/
+color: #2980b9;
+border: 3px solid rgba(0,0,0,0);
+}
+
+input:focus{   /* When you click on the box --> how to change things*/
+	background: #fff;
+	border: 3px solid #2980b9;
+	outline: none;
 }
 
 .completed{
-color:gray;
+color: gray;
 text-decoration: line-through;
 }
