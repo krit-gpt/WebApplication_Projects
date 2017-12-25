@@ -103,5 +103,16 @@ app.put("/blogs/:id", function(req, res){
    });
 });
 
+//DELETE request -- use method-override
+app.delete("/blogs/:id", function(req, res){
+   Blog.findByIdAndRemove(req.params.id, function(err){
+      if(err){
+         res.redirect("/blogs");
+      }else{
+         res.redirect("/blogs");
+      }
+   });
+});
+
 //Start the server
 app.listen(process.env.PORT, process.env.IP);
