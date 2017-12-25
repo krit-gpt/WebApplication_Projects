@@ -25,7 +25,7 @@ var Blog = mongoose.model("Blog", blogSchema);
 
 Blog.create({
     title: "Test",
-    image: "https://unsplash.com/photos/YAK9dlQqA6Y",
+    image: "https://images.unsplash.com/photo-1485466799797-74ecb5ef351b?auto=format&fit=crop&w=750&q=80",
     body: "Hello World, this is a blog!"
 });
 
