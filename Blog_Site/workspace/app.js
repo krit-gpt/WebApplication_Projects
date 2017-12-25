@@ -2,12 +2,16 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var methodOverride = require("method-override");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));  
 //For the CSS FIles -- telling express to automaticlly find in the public directory
 app.use(bodyParser.urlencoded({extended: true}));
 // Telling app to use body-parser, otherwise, it will no use it!
+
+app.use(methodOverride("_method"));
+//Using method-override to mimic the PUT request through HTML forms
 
 
 //CONFIG MONGOOSE and MAKE A MODEL
@@ -64,6 +68,40 @@ app.post("/blogs", function(req, res){
    });
 });
 
+//SHOW ROUTE -- for an individual blog post -- show more information
+app.get("/blogs/:id", function(req, res){
+   Blog.findById(req.params.id, function(err, foundBlog){
+      if(err){
+          console.log(err)
+          res.redirect("/blogs");
+          
+      } else{
+          res.render("show.ejs", {blog: foundBlog});
+      }
+   }); 
+});
+
+//EDIT Route
+app.get("/blogs/:id/edit", function(req, res){
+   Blog.findById(req.params.id, function(err, foundBlog){
+      if(err){
+         res.redirect("/blogs");
+      }else{
+         res.render("edit.ejs", {blog: foundBlog});
+      }
+   });
+});
+
+//UPDATE ROUTE -- HTML 5 -- no PUT request in HTML form -- use method-override
+app.put("/blogs/:id", function(req, res){
+   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+      if(err){
+         res.redirect("/blogs");
+      }else{
+         res.redirect("/blogs/"+ req.params.id);
+      }
+   });
+});
 
 //Start the server
 app.listen(process.env.PORT, process.env.IP);
