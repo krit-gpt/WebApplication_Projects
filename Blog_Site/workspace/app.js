@@ -23,11 +23,11 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-Blog.create({
-    title: "Test",
-    image: "https://images.unsplash.com/photo-1485466799797-74ecb5ef351b?auto=format&fit=crop&w=750&q=80",
-    body: "Hello World, this is a blog!"
-});
+//Blog.create({
+//  title: "Test",
+   //image: "https://images.unsplash.com/photo-1485466799797-74ecb5ef351b?auto=format&fit=crop&w=750&q=80",
+   //body: "Hello World, this is a blog!"
+//});
 
 app.get("/", function(req, res){
     res.redirect("/blogs");
@@ -47,11 +47,23 @@ app.get("/blogs", function(req, res){
 });
 
 
+//NEW method -- will direct to a form to make new blogs
+app.get("/blogs/new", function(req, res){
+   res.render("new.ejs"); 
+});
+
+//POST request link -- will create a new post and redirect
+app.post("/blogs", function(req, res){
+    //.create -- make and saves to the Database all at once
+   Blog.create(req.body.blog, function(err, newBlog){
+      if(err){
+          res.render("new.ejs");
+      }else{
+          res.redirect("/blogs");
+      }
+   });
+});
 
 
-
-
-
-
-
+//Start the server
 app.listen(process.env.PORT, process.env.IP);
